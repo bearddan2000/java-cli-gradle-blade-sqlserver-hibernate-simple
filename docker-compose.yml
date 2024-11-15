@@ -9,14 +9,12 @@ services:
         condition: service_healthy
         restart: true
 
-
   db:
-    image: postgres:alpine
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      - MSSQL_SA_PASSWORD=z!oBx1ab
+      - ACCEPT_EULA=Y
     ports:
-      - 5432
+      - 1433
     healthcheck:
       test: "pwd"
-    environment:
-      - POSTGRES_DB=animal
-      - POSTGRES_USER=maria
-      - POSTGRES_HOST_AUTH_METHOD=trust
